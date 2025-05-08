@@ -3,6 +3,7 @@
 //  buildZeroProjectMVVMC
 //
 //  Created by ALYSSON MENEZES on 06/05/25.
+
 //MARK: FACTORY TEM A RESPONSABILIDADE DE CRIAR NOSSAS CLASSES/ TELAS
 
 import Foundation
@@ -20,5 +21,9 @@ final class ViewControllersFactory: ViewControllersFactoryProtocol {
         return viewController
     }
     
-    
+    func makeHomeViewController(flowDelegate: HomeFlowDelegate) -> HomeViewController {
+        let contentView = HomeView()
+        let viewController = HomeViewController(contentView: contentView, flowDelegate: flowDelegate)
+        return viewController
+    }
 }

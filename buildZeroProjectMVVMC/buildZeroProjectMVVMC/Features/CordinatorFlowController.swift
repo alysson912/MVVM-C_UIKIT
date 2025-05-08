@@ -29,17 +29,22 @@ class CordinatorFlowController {
  
 }
 
-//MARK: - Navigation To Login
+//MARK: - Login Section
 extension CordinatorFlowController: LoginFlowDelegate {
+    func tappedBackButton() {
+        navigationController?.popViewController(animated: true)
+    }
+    
     func navigateToHome() {
-        let vc = viewControllerFactory.makeLoginViewController(flowDelegate: self)
-       // vc.view.backgroundColor = .systemBlue
-        self.navigationController?.pushViewController(vc, animated: true)
+        let home = viewControllerFactory.makeHomeViewController(flowDelegate: self)
+        self.navigationController?.pushViewController(home, animated: true)
+      
         
     }
     
     
 }
+
 //MARK: - Navigation To Splash
 extension CordinatorFlowController: SplashFlowDelegate {
     func openLoginBottomSheet() {
@@ -51,6 +56,12 @@ extension CordinatorFlowController: SplashFlowDelegate {
     }
     
     
+//MARK: Home Section
+extension CordinatorFlowController: HomeFlowDelegate {
+    func tappedHomeBackButton() {
+        navigationController?.popViewController(animated: true)
+    }
+}
     
     
    

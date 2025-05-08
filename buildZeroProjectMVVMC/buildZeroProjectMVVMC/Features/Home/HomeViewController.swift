@@ -1,5 +1,5 @@
 //
-//  LoginViewViewController.swift
+//  HomeViewViewController.swift
 //  buildZeroProjectMVVMC
 //
 //  Created by ALYSSON MENEZES on 06/05/25.
@@ -7,12 +7,12 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class HomeViewController: UIViewController {
     
-    private var contentView: LoginView
-    private weak var flowDelegate: LoginFlowDelegate?
+    private var contentView: HomeView
+    private weak var flowDelegate: HomeFlowDelegate?
     
-    init(contentView: LoginView, flowDelegate: LoginFlowDelegate) {
+    init(contentView: HomeView, flowDelegate: HomeFlowDelegate) {
         self.contentView = contentView
         self.flowDelegate = flowDelegate
         super.init(nibName: nil, bundle: nil)
@@ -21,42 +21,38 @@ class LoginViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
     }
     
-    private func setup() {
-        navigationController?.isNavigationBarHidden = true
+    func setup() {
+        navigationController?.navigationBar.isHidden = true
         contentView.delegate(delegate: self)
         view.addSubview(contentView)
         setupConstraints()
     }
     
-    private func setupConstraints() {
+    
+    func setupConstraints() {
         contentView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             contentView.topAnchor.constraint(equalTo: view.topAnchor),
             contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
+            contentView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 
 }
 
-extension LoginViewController: LoginFlowDelegate {
-    func navigateToHome() {
-        flowDelegate?.navigateToHome()
+extension HomeViewController: HomeFlowDelegate {
+    func tappedHomeBackButton() {
+        flowDelegate?.tappedHomeBackButton()
     }
+   
     
-    func tappedBackButton() {
-        flowDelegate?.tappedBackButton()
-    }
-    
-    
+   
 }
-
-
