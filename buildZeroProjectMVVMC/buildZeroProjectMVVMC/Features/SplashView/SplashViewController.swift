@@ -13,6 +13,7 @@ class SplashViewController: UIViewController {
     private var contentView: SplashView
     private weak var flowDelegate: SplashFlowDelegate?
     
+    // esse init seria a controller que fica em baixo ?
     init(contentView: SplashView, flowDelegate: SplashFlowDelegate){
         self.contentView = contentView
         self.flowDelegate = flowDelegate
@@ -27,17 +28,28 @@ class SplashViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(contentView)
+       setupGesture()
         setup()
     }
     
     private func setup() {
         navigationController?.isNavigationBarHidden = true
         view.addSubview(contentView)
-        
-        view.backgroundColor = .red// colorindo a controller ué?
+        view.backgroundColor = .blue// colorindo a controller ué?
         setupConstraints()
-        
+        setupGesture()
+    }
+    
+    private func setupGesture() {
+        view.addSubview(contentView) // pq isso se repete?
+        navigationController?.isNavigationBarHidden = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(showLoginBottomSheet))
+        self.view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc
+    private func showLoginBottomSheet() {
+        flowDelegate?.openLoginBottomSheet()
     }
     
     private func setupConstraints() {
@@ -52,3 +64,10 @@ class SplashViewController: UIViewController {
         ])
     }
 }
+
+
+    
+  
+    
+   
+

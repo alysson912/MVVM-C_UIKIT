@@ -7,13 +7,18 @@
 
 import UIKit
 
+public protocol LoginFlowDelegate: AnyObject {
+    func navigateToHome()
+}
+
+
 class LoginView: UIView {
     
-    
+   
     lazy var backGroundView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .systemPink//UIColor(red: 26/255, green: 26/255, blue: 1/255, alpha: 1.0)
+        view.backgroundColor = .yellow//UIColor(red: 26/255, green: 26/255, blue: 1/255, alpha: 1.0)
         return view
     }()
     
@@ -27,10 +32,11 @@ class LoginView: UIView {
         return label
     }()
     
-    
+
     private func setupUI() {
         addSubview(backGroundView)
         backGroundView.addSubview(genericLabel)
+        
     }
     
     override init(frame: CGRect) {
@@ -51,7 +57,9 @@ class LoginView: UIView {
             backGroundView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
             genericLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            genericLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
+            genericLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            
+           
         ])
     }
 }

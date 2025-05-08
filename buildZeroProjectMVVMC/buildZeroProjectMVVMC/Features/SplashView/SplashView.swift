@@ -7,7 +7,19 @@
 
 import UIKit
 
+public protocol SplashFlowDelegate: AnyObject {
+    func openLoginBottomSheet()
+    func navigateToHome()
+}
+
+
 class SplashView: UIView {
+    
+    private weak var delegate: SplashFlowDelegate?
+    
+    func delegate(delegate: SplashFlowDelegate?) {
+        self.delegate = delegate
+    }
         
         lazy var backGroundView: UIView = {
             let view = UIView()
@@ -20,16 +32,17 @@ class SplashView: UIView {
         lazy var genericLabel: UILabel = {
             let label = UILabel()
             label.translatesAutoresizingMaskIntoConstraints = false
-            label.text = "Login!"
-            label.textColor = .black
-            label.font = UIFont.systemFont(ofSize: 40, weight: .bold)
+            label.text = "SplashView, click aqui para ir para o login !"
+            label.textColor = .white
+            label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
             return label
         }()
-        
+ 
         
         private func setupUI() {
             addSubview(backGroundView)
             backGroundView.addSubview(genericLabel)
+          
         }
         
         override init(frame: CGRect) {
@@ -50,7 +63,9 @@ class SplashView: UIView {
                 backGroundView.bottomAnchor.constraint(equalTo: bottomAnchor),
                 
                 genericLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-                genericLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
+                genericLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+                
+               
             ])
         }
     }
